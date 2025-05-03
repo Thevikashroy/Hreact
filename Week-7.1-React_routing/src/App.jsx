@@ -7,18 +7,18 @@ const Dashboard = lazy(() => import('./components/Dashboard'));
 const Landing = lazy(() => import('./components/Landing'));
 
 function App() {
+
+  //Suspense API
   return (
-    <BrowserRouter>
       <div>
+    <BrowserRouter>
         <Appbar />
-        <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/" element={<Landing />} />
+            <Route path="/dashboard" element={<Suspense fallback={'loading...'}><Dashboard /></Suspense>} />
+            <Route path="/" element={<Suspense fallback={'loading...'}><Landing /></Suspense>} />
           </Routes>
-        </Suspense>
-      </div>
     </BrowserRouter>
+      </div>
   );
 }
 
